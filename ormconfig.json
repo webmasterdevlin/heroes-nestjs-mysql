@@ -1,0 +1,10 @@
+{
+  "synchronize": false,
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "Pass1234!",
+  "database": "tourDb",
+  "entities": ["src/**/**.entity{.ts,.js}"]
+}
