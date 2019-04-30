@@ -6,7 +6,7 @@ import { HeroesController } from './heroes.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([HeroEntity])],
-  components: [HeroService],
+  providers: [HeroService],
   controllers: [HeroesController],
   exports: [HeroService],
 })

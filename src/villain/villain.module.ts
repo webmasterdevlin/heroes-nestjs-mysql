@@ -6,7 +6,7 @@ import { VillainsController } from './villains.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([VillainEntity])],
-  components: [VillainService],
+  providers: [VillainService],
   controllers: [VillainsController],
   exports: [VillainService],
 })
