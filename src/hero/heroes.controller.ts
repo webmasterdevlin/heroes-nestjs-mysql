@@ -27,6 +27,8 @@ export class HeroesController {
     return await this.heroService.getAllFromDb();
   }
 
+  @ApiOperation({ title: 'Get a hero by id' })
+  @ApiResponse({ status: 200, description: 'Return a hero by id.' })
   @Get(':id')
   async retrieveHero(@Param('id') id: string) {
     const hero = await this.heroService.getById(id);
@@ -48,7 +50,6 @@ export class HeroesController {
     status: 201,
     description: 'The hero has been successfully created.',
   })
-  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Post()
   @UsePipes(new ValidationPipe())
   async saveHero(@Body() heroDto: CreateHeroDto) {
@@ -57,10 +58,9 @@ export class HeroesController {
 
   @ApiOperation({ title: 'Update hero' })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'The hero has been successfully updated.',
   })
-  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Put(':id')
   async updateHero(@Param('id') id: string, @Body() heroDto: CreateHeroDto) {
     return await this.heroService.update(id, heroDto);
@@ -68,10 +68,9 @@ export class HeroesController {
 
   @ApiOperation({ title: 'Delete hero' })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'The hero has been successfully deleted.',
   })
-  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Delete(':id')
   async removeHero(@Param('id') id: string) {
     return await this.heroService.remove(id);

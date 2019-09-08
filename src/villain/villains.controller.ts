@@ -27,6 +27,8 @@ export class VillainsController {
     return await this.villainService.getAllFromDb();
   }
 
+  @ApiOperation({ title: 'Get a villain by id' })
+  @ApiResponse({ status: 200, description: 'Return a villain by id.' })
   @Get(':id')
   async retrieveVillain(@Param('id') id: string) {
     const villain = await this.villainService.getById(id);
@@ -48,7 +50,6 @@ export class VillainsController {
     status: 201,
     description: 'The villain has been successfully created.',
   })
-  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Post()
   @UsePipes(new ValidationPipe())
   async saveVillain(@Body() villainDto: CreateVillainDto) {
@@ -58,10 +59,9 @@ export class VillainsController {
 
   @ApiOperation({ title: 'Update villain' })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'The villain has been successfully updated.',
   })
-  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Put(':id')
   async updateVillain(
     @Param('id') id: string,
@@ -72,10 +72,9 @@ export class VillainsController {
 
   @ApiOperation({ title: 'Delete villain' })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'The villain has been successfully deleted.',
   })
-  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Delete(':id')
   async removeVillain(@Param('id') id: string) {
     return await this.villainService.remove(id);
